@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:orientation="vertical" >
+
+    <ImageView
+        android:id="@+id/vessel_logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dip"
+        android:src="@drawable/vessel_logo" />
+
+    <TextView
+        android:id="@+id/welcome_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/vessel_logo"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:text="@string/welcome_msg"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <Button
+        android:id="@+id/buttonFb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/welcome_text"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dip"
+        android:background="@color/fb_blue"
+        android:minWidth="@dimen/login_button_width"
+        android:onClick="signUpWithFacebook"
+        android:padding="10dip"
+        android:text="@string/login_with_facebook"
+        android:textColor="@android:color/white" />
+
+    <Button
+        android:id="@+id/buttonGplus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/buttonFb"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="5dip"
+        android:background="@color/gplus_red"
+        android:minWidth="@dimen/login_button_width"
+        android:onClick="signUpWithGplus"
+        android:padding="10dip"
+        android:text="@string/login_with_gplus"
+        android:textColor="@android:color/white" />
+
+</RelativeLayout>
