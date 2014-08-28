@@ -11,5 +11,9 @@
     <string name="login_with_gplus">Sign up with G+</string>
     <string name="signup">Sign up</string>
     <string name="social_login">Social Logins</string>
+    <string name="dummy_guide">This is a dummy user guide. (In this onboarding test we are showing 50% users a guide)</string>
+    <string name="dummy_guide_skip">Skip Guide</string>
+    <string name="sign_up">You are currently looking at signup test, in this test we are showing 50% users Social sign up and rest email sign up to major conversion rate.</string>
+    <string name="onboarding_test">You are currently looking at onboarding test.</string>
 
 </resources>

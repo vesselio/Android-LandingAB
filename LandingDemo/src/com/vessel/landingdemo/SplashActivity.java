@@ -9,6 +9,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
+import android.widget.Space;
+import android.widget.Toast;
 
 public class SplashActivity extends Activity {
 
@@ -17,40 +19,52 @@ public class SplashActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.splash_main);
 		
-		VesselAB.reloadTest();
-		VesselAB.setABListener(new ABListener() {
+		VesselAB.getVariationForTest("onboarding", new ABListener() {
 			
 			@Override
 			public void testNotAvailable(TestVariation arg0) {
-				// Go to home activity once test is loaded or not available 
-				gotoHome();
+				showSignUpActivity();
 			}
 			
+
 			@Override
-			public void testLoading() {
-				// Show loading animations.
-			}
-			
-			@Override
-			public void testLoaded(String s, TestVariation arg1) {
-				gotoHome();
+			public void testAvailable(String arg0, TestVariation arg1) {
+				showUserGuideActivity();
 			}
 		});
 		
 	}
-
-	protected void gotoHome() {
+	
+	protected void showUserGuideActivity() {
 		runOnUiThread(new Runnable() {
 
 			@Override
 			public void run() {
+				Toast.makeText(getApplicationContext(), "Test loaded successfully, show user guide.", Toast.LENGTH_LONG).show();
 				Intent intent = new Intent();
-				intent.setClass(SplashActivity.this, HomeActivity.class);
+				intent.setClass(SplashActivity.this, GuideActivity.class);
 				startActivity(intent);
 				finish();
 
 			}
 		});
+		
+	}
+
+	private void showSignUpActivity() {
+		runOnUiThread(new Runnable() {
+
+			@Override
+			public void run() {
+				Toast.makeText(getApplicationContext(), "Test is not available for this device, showing login screen.", Toast.LENGTH_LONG).show();
+				Intent intent = new Intent();
+				intent.setClass(SplashActivity.this, SignupActivity.class);
+				startActivity(intent);
+				finish();
+
+			}
+		});
+		
 	}
 
 	@Override
@@ -59,5 +73,16 @@ public class SplashActivity extends Activity {
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
+	
+	@Override
+	protected void onResume() {
+		VesselAB.onResume(SplashActivity.this);
+		super.onResume();
+	}
 
+	@Override
+	protected void onPause() {
+		VesselAB.onPause(SplashActivity.this);
+		super.onPause();
+	}
 }
